@@ -19,7 +19,7 @@ Masukkan `Remark` kemudian tekan enter
 
 Apabila berhasil, maka anda akan mendapatkan ID transaksi dan otomatis menyimpannya pada database
 
-##Update Information
+## Update Information
 Ketik angka `2` kemudian tekan enter
 Masukkan `ID` kemudian tekan enter
 
