@@ -1,13 +1,13 @@
 <?php
 start:
 include 'connection.php';
-
+//masukkan pilihan fitur
 	echo "\nPilih nomor fitur kemudian tekan Enter";
 	echo "\n1. Input Information";
 	echo "\n2. Update Information\n";
 	$pilihan = fopen ("php://stdin","r");
 	$pilihan = fgets($pilihan);
-	
+//input data	
 	if ($pilihan==1){
 		echo "\n\nAnda memilih fitur Input Information";
 		echo "\nLengkapi data berikut :";
@@ -23,7 +23,7 @@ include 'connection.php';
 			echo "\nMasukkan Remark :";
 			$Remark = fopen ("php://stdin","r");
 			$Remark = fgets($Remark);
-		
+//post ke Flip		
 		
 		$username = "HyzioY7LP6ZoO7nTYKbG8O4ISkyWnX1JvAEVAhtWKZumooCzqp41";
 		$password = "";
@@ -54,7 +54,7 @@ include 'connection.php';
 		$time_served = $jsonArray['time_served'];
 		$fee = $jsonArray['fee'];
 		
-		
+//insert ke database		
 		$sql="	INSERT INTO tablearief (id,amount,status_disburse,timestamp_disburse,bank_code,account_number,beneficiary_name,remark,receipt,time_served,fee) 
 				VALUES ( '$ID', '$amount', '$status', '$timestamp','$bank_code', '$account_number', '$benificiary_name', '$remark','$receipt', '$time_served', '$fee')";
 		if ($conn->query($sql) === TRUE) {
@@ -67,11 +67,12 @@ include 'connection.php';
 		goto start;
 	}		
 	else if ($pilihan == 2){
+//fitur update		
 		echo"Anda memilih fitur update Information";
 		echo"\nMasukkan ID : ";
 		$idupdate = fopen ("php://stdin","r");
 		$idupdate = fgets($idupdate);
-		
+//get dari Flip		
 		$username = "HyzioY7LP6ZoO7nTYKbG8O4ISkyWnX1JvAEVAhtWKZumooCzqp41";
 		$password = "";
 		$remote_url = 'https://nextar.flip.id/disburse/'.$idupdate;
@@ -89,7 +90,7 @@ include 'connection.php';
 		$receipt = $jsonArray['receipt'] ;
 		$time_served = $jsonArray['time_served'];
 		
-		
+//update ke database		
 		$sql="	UPDATE tablearief	
 				SET status_disburse = '$status', receipt = '$receipt', time_served = '$time_served'
 				WHERE id = '$ID'";
